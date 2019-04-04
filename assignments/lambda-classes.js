@@ -28,6 +28,10 @@ class Person {
     grade(student, subject){
         return `${student.name} receives a perfect score on ${subject}`;
     }
+    tallyScores(student){
+        return Math.floor(Math.random() * Math.floor(student.grade));
+    
+    } //stretch
   }//Instructor
 
   class Student extends Person{
@@ -36,7 +40,7 @@ class Person {
      this.previousBackground = studentAttrs.previousBackground; 
      this.className = studentAttrs.className;
      this.favSubjects = studentAttrs.favSubjects
-    
+     this.grade=studentAttrs.grade //stretch
     }
     // Methods
     listsSubjects() {
@@ -47,6 +51,13 @@ class Person {
     }
     sprintChallenge (subject){
         return `${this.name} has begun sprint challenge on ${subject}`;
+    }
+    graduate (instructor){
+        if ((instructor.tallyScores(this) > 70)) {
+            return `Congratulations! ${this.name} has graduated!`
+        } else {
+            return `${this.name} did not get a high enough score..try again!`
+        }
     }
   }//Student
 
@@ -94,6 +105,7 @@ const odell = new Instructor({
     previousBackground: 'art major',
     className: 'UX3',
     favSubjects: 'CSS, Design, Ruby',
+    grade:100,
   });
 
   const nancy = new Student({
@@ -104,6 +116,7 @@ const odell = new Instructor({
     previousBackground: 'linguistics',
     className: 'Web19',
     favSubjects: 'HTML, JavaScript, React',
+    grade: 100,
   });
 
   const dave = new Student({
@@ -114,6 +127,7 @@ const odell = new Instructor({
     previousBackground: 'business',
     className: 'Web18',
     favSubjects: 'Python, React, JavaScript',
+    grade: 100,
   });
 
   const jared = new ProjectManager({
@@ -144,3 +158,8 @@ console.log(nancy.PRAssignment("JavaScript"));
 console.log(dave.sprintChallenge("HTML"))
 console.log(jared.standUp("squad channel"));
 console.log(sam.debugsCode(dave, "JavaScript"));
+//Stretch
+console.log(odell.tallyScores(danica)); //stretch for instructor grading 
+console.log(danica.graduate(odell)); //stretch for student graduation
+console.log(nancy.graduate(tony)); //stretch
+console.log(dave.graduate(odell)); //stretch
